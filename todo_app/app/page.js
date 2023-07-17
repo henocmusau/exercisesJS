@@ -1,7 +1,10 @@
 import Image from 'next/image'
 
+
+
 import { BsMoonFill } from 'react-icons/bs'
 import bg from '../assets/imgs/bg1.jpg'
+import ListTodos from '@/components/ListTodos'
 
 export default function Home() {
   return (
@@ -12,15 +15,16 @@ export default function Home() {
       className="flex w-full bg-cover bg-no-repeat bg-top flex-col items-center justify-between"
     >
       <section
-        className='min-h-[300px] w-[500px] pt-20 border border-blue-50'
+        className='min-h-[300px] w-[500px] pt-20 relative'
       >
         <div className='flex justify-between items-center text-white mb-10'>
           <h1 className='text-4xl font-semibold uppercase tracking-[0.3em] '>Todo</h1>
           <BsMoonFill className='text-2xl' />
         </div>
-        <div className='w-full'>
+        <form className='w-full'>
           <input type='text' placeholder='Create a new todo' name='todo' className='w-full rounded py-2 px-1 text-lg' />
-        </div>
+        </form>
+        <ListTodos />
       </section>
     </main>
   )
