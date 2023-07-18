@@ -1,8 +1,13 @@
+'use client'
+
 import { BsCheckCircle } from "react-icons/bs";
 import { AiFillDelete } from 'react-icons/ai';
 import { GiCircle } from 'react-icons/gi'
 
-export default function Todo({ isCompleted }) {
+export default function Todo({ isCompleted, title }) {
+    const noCompleted = "cursor-pointer text-slate-700 text-md"
+    const completed = "cursor-pointer text-slate-400 text-md line-through"
+
     return (
         <div className="py-4 px-6 flex items-center justify-between w-full text-lg">
             <div className="flex items-center">
@@ -12,9 +17,11 @@ export default function Todo({ isCompleted }) {
                     /> :
                     <GiCircle className="cursor-pointer text-2xl mr-2 text-slate-400" />
                 }
-                <span className="cursor-pointer text-slate-700 text-md">Ceci est un todo</span>
+                <span className={isCompleted ? completed : noCompleted}>{title} </span>
             </div>
-            <AiFillDelete className="cursor-pointer text-2xl text-slate-500 hover:text-red-500 transition-all duration-300" />
+            {!isCompleted &&
+                <AiFillDelete className="cursor-pointer text-2xl text-slate-500 hover:text-red-500 transition-all duration-300" />
+            }
         </div>
     )
 }

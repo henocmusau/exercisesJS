@@ -1,12 +1,46 @@
+'use client';
+import { useRef, useState } from 'react';
+
 import Image from 'next/image'
-
-
 
 import { BsMoonFill } from 'react-icons/bs'
 import bg from '../assets/imgs/bg1.jpg'
 import ListTodos from '@/components/ListTodos'
+import { stringify } from 'postcss';
+
+const Todos = [
+  {
+    id: 1,
+    title: 'Create a new todo',
+    isCompleted: true
+  },
+  {
+    id: 2,
+    title: 'Create a new todo',
+    isCompleted: false
+  }
+]
 
 export default function Home() {
+  const [todos, setTodos] = useState(Todos)
+  const inputRef = useRef()
+
+  function createTodo(e) {
+    e.preventDefault()
+
+    const newTodo = {
+      id: todos.length + 1,
+      title: inputRef.current.value,
+      isCompleted: false
+    }
+
+    setTodos([...todos, newTodo])
+
+    console.log(inputRef.current.value)
+    inputRef.current.value = ''
+    console.log(JSON.stringify(newTodo))
+  }
+
   return (
     <main
       style={{
@@ -21,10 +55,16 @@ export default function Home() {
           <h1 className='text-4xl font-semibold uppercase tracking-[0.3em] '>Todo</h1>
           <BsMoonFill className='text-2xl' />
         </div>
-        <form className='w-full'>
-          <input type='text' placeholder='Create a new todo' name='todo' className='w-full rounded py-2 px-1 text-lg' />
+        <form className='w-full' method='POST' onSubmit={createTodo}>
+          <input ref={inputRef} type='text' placeholder='Create a new todo' name='todo' className='w-full rounded py-2 px-1 text-lg' />
         </form>
-        <ListTodos />
+        <div className="w-[500px] absolute mt-5 bg-slate-100 rounded-lg divide-y-2 shadow-lg">
+          {
+            todos && todos.length <= 0 ?
+              <span>No todo here. Create one !</span>
+              : <ListTodos todos={todos} />
+          }
+        </div>
       </section>
     </main>
   )
