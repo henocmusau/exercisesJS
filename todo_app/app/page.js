@@ -41,6 +41,25 @@ export default function Home() {
     console.log(JSON.stringify(newTodo))
   }
 
+  function changeStateTodo(id) {
+    setTodos((prevTodos) =>
+      prevTodos.map(todo => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            isCompleted: !todo.isCompleted
+          }
+        }
+        return todo
+      }))
+  }
+
+  function removeTodo(id) {
+    setTodos((prevTodos) =>
+      prevTodos.filter(todo => todo.id !== id))
+    console.log('Removed')
+  }
+
   return (
     <main
       style={{
@@ -61,8 +80,8 @@ export default function Home() {
         <div className="w-[500px] absolute mt-5 bg-slate-100 rounded-lg divide-y-2 shadow-lg">
           {
             todos && todos.length <= 0 ?
-              <span>No todo here. Create one !</span>
-              : <ListTodos todos={todos} />
+              <span className='px-4 py-2 text-slate-500 inline-block rounded-md'>No todo here. Create one !</span>
+              : <ListTodos todos={todos} changeStateTodo={changeStateTodo} handleRemoveTodo={removeTodo} />
           }
         </div>
       </section>

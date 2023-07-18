@@ -16,11 +16,11 @@ const filters = [
     },
 ]
 
-export default function ListTodos({ todos }) {
+export default function ListTodos({ todos, changeStateTodo, handleRemoveTodo }) {
     return (
         <>
             {todos.map(todo => (
-                <Todo key={todo.id} {...todo} />
+                <Todo key={todo.id} {...todo} changeStateTodo={changeStateTodo} RemoveTodo={handleRemoveTodo} />
             ))}
 
             <div className="flex justify-between px-6 text-sm py-4 text-slate-500">
