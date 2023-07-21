@@ -1,5 +1,6 @@
 'use client';
 import { useRef, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import Image from 'next/image'
 
@@ -8,37 +9,26 @@ import bg from '../assets/imgs/bg1.jpg'
 import ListTodos from '@/components/ListTodos'
 import { stringify } from 'postcss';
 
-const Todos = [
-  {
-    id: 1,
-    title: 'Create a new todo',
-    isCompleted: true
-  },
-  {
-    id: 2,
-    title: 'Create a new todo',
-    isCompleted: false
-  }
-]
-
 export default function Home() {
-  const [todos, setTodos] = useState(Todos)
+  const [todos, setTodos] = useState([])
+  const [filter, setFilter] = useState(0)
   const inputRef = useRef()
 
   function createTodo(e) {
     e.preventDefault()
 
+    if (inputRef.current.value.trim() < 1) return
+
     const newTodo = {
-      id: todos.length + 1,
+      id: uuidv4(),
       title: inputRef.current.value,
       isCompleted: false
     }
 
     setTodos([...todos, newTodo])
 
-    console.log(inputRef.current.value)
     inputRef.current.value = ''
-    console.log(JSON.stringify(newTodo))
+    setFilter(0)
   }
 
   function changeStateTodo(id) {
@@ -60,29 +50,55 @@ export default function Home() {
     console.log('Removed')
   }
 
+  function changeFilter(id) {
+    setFilter(id)
+  }
+
+  function filterTodos() {
+    switch (filter) {
+      case 0:
+        return todos
+      case 1:
+        return todos.filter(todo => !todo.isCompleted)
+      case 2:
+        return todos.filter(todo => todo.isCompleted)
+      default:
+        return todos
+    }
+  }
+
+  const filteredTodos = filterTodos()
+
+  function clearCompletedTodos() {
+    setTodos(todos.filter(todo => !todo.isCompleted))
+  }
+
   return (
     <main
-      style={{
-        backgroundImage: `url(${bg.src})`,
-      }}
+      style={{ backgroundImage: `url(${bg.src})` }}
       className="flex w-full bg-cover bg-no-repeat bg-top flex-col items-center justify-between"
     >
       <section
-        className='min-h-[300px] w-[500px] pt-20 relative'
+        className='min-h-[300px] mx-2 md:mx-0 w-full md:w-[500px] pt-20 relative'
       >
-        <div className='flex justify-between items-center text-white mb-10'>
+        <div className='flex justify-between items-center mx-2 md:mx-0 text-white mb-10'>
           <h1 className='text-4xl font-semibold uppercase tracking-[0.3em] '>Todo</h1>
           <BsMoonFill className='text-2xl' />
         </div>
         <form className='w-full' method='POST' onSubmit={createTodo}>
-          <input ref={inputRef} type='text' placeholder='Create a new todo' name='todo' className='w-full rounded py-2 px-1 text-lg' />
+          <input ref={inputRef} type='text' placeholder='Create a new todo' name='todo' className='w-full rounded p-2 text-lg' />
         </form>
-        <div className="w-[500px] absolute mt-5 bg-slate-100 rounded-lg divide-y-2 shadow-lg">
-          {
-            todos && todos.length <= 0 ?
-              <span className='px-4 py-2 text-slate-500 inline-block rounded-md'>No todo here. Create one !</span>
-              : <ListTodos todos={todos} changeStateTodo={changeStateTodo} handleRemoveTodo={removeTodo} />
-          }
+        <div className="w-full md:w-[500px] mx-2 md:mx-0 absolute mt-5 bg-slate-100 rounded-lg divide-y-2 shadow-lg">
+
+          <ListTodos
+            todos={filteredTodos}
+            changeStateTodo={changeStateTodo}
+            handleRemoveTodo={removeTodo}
+            filterTodos={filteredTodos}
+            changeFilter={changeFilter}
+            clearCompletedTodos={clearCompletedTodos}
+          />
+
         </div>
       </section>
     </main>
