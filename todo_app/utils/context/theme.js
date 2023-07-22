@@ -1,19 +1,21 @@
+'use client'
+
 import React, { createContext, useEffect } from 'react';
 
 const getInitialTheme = () => {
     if (typeof window !== 'undefined' && window.localStorage) {
-        const storedPrefs = window.localStorage.getItem('color-theme');
-        if (typeof storedPrefs === 'string') {
+        const storedPrefs = window.localStorage.getItem('is_dark_theme');
+        if (typeof storedPrefs === 'boolean') {
             return storedPrefs;
         }
 
         const userMedia = window.matchMedia('(prefers-color-scheme: dark)');
         if (userMedia.matches) {
-            return 'dark';
+            return true;
         }
     }
 
-    return 'light' // light theme as the default;
+    return false // light theme as the default;
 };
 
 const ThemeContext = createContext();
@@ -23,12 +25,12 @@ export const ThemeProvider = ({ initialTheme, children }) => {
 
     const rawSetTheme = (rawTheme) => {
         const root = window.document.documentElement;
-        const isDark = rawTheme === 'dark';
+        const isDark = rawTheme === true;
 
         root.classList.remove(isDark ? 'light' : 'dark');
         root.classList.add(rawTheme);
 
-        localStorage.setItem('color-theme', rawTheme);
+        localStorage.setItem('is_dark_theme', rawTheme);
     };
 
     if (initialTheme) {
