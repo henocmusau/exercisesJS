@@ -4,10 +4,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 import Image from 'next/image'
 
-import { BsMoonFill } from 'react-icons/bs'
 import bg from '../assets/imgs/bg1.jpg'
 import ListTodos from '@/components/ListTodos'
 import { stringify } from 'postcss';
+import ThemeContext from '@/utils/context/theme';
+import ThemeButton from '@/components/ThemeButton';
 
 export default function Home() {
   const [todos, setTodos] = useState([])
@@ -83,7 +84,7 @@ export default function Home() {
       >
         <div className='flex justify-between items-center mx-2 md:mx-0 text-white mb-10'>
           <h1 className='text-4xl font-semibold uppercase tracking-[0.3em] '>Todo</h1>
-          <BsMoonFill className='text-2xl' />
+          <ThemeButton />
         </div>
         <form className='w-full' method='POST' onSubmit={createTodo}>
           <input ref={inputRef} type='text' placeholder='Create a new todo' name='todo' className='w-full rounded p-2 text-lg' />
