@@ -1,13 +1,15 @@
 'use client'
 
 import { useContext } from 'react'
+
 import ThemeContext from '@/utils/context/theme'
 
 import { BsMoonFill, BsSunFill } from 'react-icons/bs'
 
-export default function () {
+export default function ThemeButton() {
+
     const { theme, setTheme } = useContext(ThemeContext)
-    console.log(theme, setTheme)
+
     return (
         <>
             {theme === 'dark' &&

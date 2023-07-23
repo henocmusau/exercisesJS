@@ -31,7 +31,6 @@ export const ThemeProvider = ({ initialTheme, children }) => {
         root.classList.add(rawTheme);
 
         localStorage.setItem('color-theme', rawTheme);
-        console.log(theme)
     };
 
     if (initialTheme) {

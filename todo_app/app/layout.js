@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <ThemeProvider>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className='bg-bgLight dark:bg-bgDark flex flex-col items-center'>{children}</body>
       </html>
     </ThemeProvider>
   )
