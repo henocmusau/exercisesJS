@@ -1,5 +1,6 @@
 'use client'
 
+import useStorage from '@/hooks/useStorage';
 import { useState, createContext, useEffect } from 'react';
 
 const getInitialTheme = () => {
@@ -21,7 +22,7 @@ const getInitialTheme = () => {
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ initialTheme, children }) => {
-    const [theme, setTheme] = useState(getInitialTheme);
+    const [theme, setTheme] = useStorage('theme', getInitialTheme);
 
     const rawSetTheme = (rawTheme) => {
         const root = window.document.documentElement;
@@ -30,7 +31,7 @@ export const ThemeProvider = ({ initialTheme, children }) => {
         root.classList.remove(isDark ? 'light' : 'dark');
         root.classList.add(rawTheme);
 
-        localStorage.setItem('color-theme', rawTheme);
+        setTheme(rawTheme)
     };
 
     if (initialTheme) {

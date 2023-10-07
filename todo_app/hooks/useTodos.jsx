@@ -1,10 +1,9 @@
-'use client'
 import React, { useState, useRef } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import useStorage from './useStorage';
 
 export default function useTodos() {
-    const [todos, setTodos] = useStorage('todos')
+    const [todos, setTodos] = useStorage('todos', [])
     const [filter, setFilter] = useState(0)
     const inputRef = useRef()
 
@@ -68,5 +67,5 @@ export default function useTodos() {
         changeFilter(0)
     }
 
-    return [createTodo, inputRef, filteredTodos, filterTodos, changeStateTodo, removeTodo, changeFilter, clearCompletedTodos, filter]
+    return [createTodo, inputRef, filteredTodos, changeStateTodo, removeTodo, changeFilter, clearCompletedTodos, filter]
 }
