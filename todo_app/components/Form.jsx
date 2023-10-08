@@ -2,9 +2,9 @@
 import React from 'react'
 
 export default function Form({ createTodo, inputRef }) {
-    return (
 
-        <form className='w-full' method='POST' onSubmit={createTodo}>
+    return (
+        <form className='w-full inline-flex' method='POST' onSubmit={createTodo}>
             <input
                 ref={inputRef}
                 type='text'
@@ -13,6 +13,5 @@ export default function Form({ createTodo, inputRef }) {
                 className='w-full rounded p-4 text-lg dark:bg-bgDarkSecondary dark:text-slate-200'
             />
         </form>
-
     )
 }

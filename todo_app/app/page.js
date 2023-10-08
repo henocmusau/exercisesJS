@@ -10,12 +10,12 @@ export default function Home() {
 
   return (
     <main
-      className='bg-lightImage dark:bg-darkImage flex w-full bg-cover bg-no-repeat bg-top flex-col items-center justify-between'
+      className='bg-lightImage box-border dark:bg-darkImage flex w-full bg-cover bg-no-repeat bg-top flex-col items-center justify-between'
     >
       <section
-        className='min-h-[300px] mx-2 md:mx-0 w-full md:w-[500px] pt-20 relative'
+        className='min-h-[300px] px-2 md:mx-0 w-full md:w-[500px] pt-20 relative'
       >
-        <div className='flex justify-between items-center mx-2 md:mx-0 text-white mb-10'>
+        <div className='flex justify-between items-center md:mx-0 text-white mb-10'>
           <h1 className='text-4xl font-semibold uppercase tracking-[0.3em] '>Todo</h1>
           <ThemeButton />
         </div>

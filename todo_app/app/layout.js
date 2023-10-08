@@ -1,19 +1,18 @@
-import { ThemeProvider } from '@/utils/context/theme'
 import './globals.css'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import { ThemeProvider } from '@/utils/context/theme'
 
 export const metadata = {
   title: 'My Todo App - Manage your todo-list !',
   description: 'This app is for create, manage and filter your todolist efficiently.',
 }
 
+const style = ' bg-bgLight dark:bg-bgDark flex flex-col items-center'
+
 export default function RootLayout({ children }) {
   return (
     <ThemeProvider>
       <html lang="en">
-        <body className='bg-bgLight dark:bg-bgDark flex flex-col items-center'>{children}</body>
+        <body className={style} >{children}</body>
       </html>
     </ThemeProvider>
   )

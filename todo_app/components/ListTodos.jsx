@@ -20,20 +20,22 @@ const filters = [
 export default function ListTodos({ todos, changeStateTodo, handleRemoveTodo, changeFilter, clearCompletedTodos, filterCategory }) {
     return (
         <>
-            <div
-                className="w-full md:w-[500px] mx-2 md:mx-0 absolute mt-5 bg-slate-100 dark:bg-bgDarkSecondary rounded-lg divide-y dark:divide-gray-700 shadow-lg"
+            <section
+                className="w-full md:w-[500px] px-2 md:mx-0 inset-x-0 absolute mt-5 shadow-lg"
             >
-                {todos && todos.length > 0 && todos.map(todo => (
-                    <Todo
-                        key={todo.id}
-                        {...todo}
-                        changeStateTodo={changeStateTodo}
-                        RemoveTodo={handleRemoveTodo}
-                    />
-                ))}
+                <ul className="divide-y dark:divide-gray-700 ">
+                    {todos && todos.length > 0 && todos.map(todo => (
+                        <Todo
+                            key={todo.id}
+                            {...todo}
+                            changeStateTodo={changeStateTodo}
+                            RemoveTodo={handleRemoveTodo}
+                        />
+                    ))}
+                </ul>
 
                 {todos && todos?.length < 1 ?
-                    <span className='px-4 py-8 w-full mx-2 box-border flex dark:text-slate-200 rounded-md'
+                    <span className='px-6 py-8 w-full bg-slate-100 dark:bg-bgDarkSecondary box-border flex dark:text-slate-200 rounded-md'
                     >
                         No todo here. Create one !
                     </span>
@@ -46,7 +48,7 @@ export default function ListTodos({ todos, changeStateTodo, handleRemoveTodo, ch
                     clearCompletedTodos={clearCompletedTodos}
                     filterCategory={filterCategory}
                 />
-            </div>
+            </section>
         </>
     )
 }
