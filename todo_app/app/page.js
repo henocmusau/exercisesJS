@@ -20,19 +20,16 @@ export default function Home() {
           <ThemeButton />
         </div>
         <Form createTodo={createTodo} inputRef={inputRef} />
-        <div
-          className="w-full md:w-[500px] mx-2 md:mx-0 absolute mt-5 bg-slate-100 dark:bg-bgDarkSecondary rounded-lg divide-y dark:divide-gray-700 shadow-lg"
-        >
-          <ListTodos
-            todos={filteredTodos}
-            changeStateTodo={changeStateTodo}
-            handleRemoveTodo={removeTodo}
-            filterTodos={filteredTodos}
-            changeFilter={changeFilter}
-            clearCompletedTodos={clearCompletedTodos}
-            filterCategory={filter}
-          />
-        </div>
+
+        <ListTodos
+          todos={filteredTodos}
+          changeStateTodo={changeStateTodo}
+          handleRemoveTodo={removeTodo}
+          filterTodos={filteredTodos}
+          changeFilter={changeFilter}
+          clearCompletedTodos={clearCompletedTodos}
+          filterCategory={filter}
+        />
 
       </section>
     </main>
