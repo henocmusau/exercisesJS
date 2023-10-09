@@ -6,7 +6,7 @@ export const metadata = {
   description: 'This app is for create, manage and filter your todolist efficiently.',
 }
 
-const style = ' bg-bgLight dark:bg-bgDark flex flex-col items-center'
+const style = ' bg-bgLight dark:bg-bgDark flex flex-col items-center break-words'
 
 export default function RootLayout({ children }) {
   return (

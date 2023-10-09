@@ -1,7 +1,7 @@
 'use client'
 
 import useStorage from '@/hooks/useStorage';
-import { useState, createContext, useEffect } from 'react';
+import { createContext, useEffect, useContext } from 'react';
 
 const getInitialTheme = () => {
     if (typeof window !== 'undefined' && window.localStorage) {
@@ -20,6 +20,10 @@ const getInitialTheme = () => {
 };
 
 const ThemeContext = createContext();
+
+export function useThemeContext() {
+    return useContext(ThemeContext)
+}
 
 export const ThemeProvider = ({ initialTheme, children }) => {
     const [theme, setTheme] = useStorage('theme', getInitialTheme);

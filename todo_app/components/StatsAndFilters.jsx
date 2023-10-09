@@ -12,7 +12,9 @@ export default function StatsAndFilters({ todos, filters, clearCompletedTodos, c
             {todos && todos.length > 0 ?
                 <>
                     {/* Stats and filters */}
-                    <p className='grow text-left py-4 md:py-0 pl-6 md:pl-0 bg-slate-100 dark:bg-bgDarkSecondary rounded-bl-lg md:rounded-bl-none'>{todos?.length} items left</p>
+                    <p
+                        className='grow text-left py-4 md:py-0 pl-6 md:pl-0 bg-slate-100 dark:bg-bgDarkSecondary rounded-bl-lg md:rounded-bl-none'
+                    >{todos?.length} item{todos.length > 1 ? 's' : ''} left</p>
                     <div className="flex gap-4 order-2 md:order-none basis-full md:basis-auto justify-center mt-4 md:mt-0 p-4 md:p-0 bg-slate-100 dark:bg-bgDarkSecondary rounded-lg md:rounded-none">
 
                         {/* Filters */}

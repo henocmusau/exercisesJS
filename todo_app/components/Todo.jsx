@@ -5,7 +5,7 @@ import { AiFillDelete } from 'react-icons/ai';
 import { GiCircle } from 'react-icons/gi'
 
 export default function Todo({ id, isCompleted, title, changeStateTodo, RemoveTodo }) {
-    const style = `${isCompleted ? 'text-slate-400 dark:text-slate-500 ' : 'text-slate-700 dark:text-slate-200 '} 'cursor-pointer text-md'`
+    const style = `${isCompleted ? 'text-slate-400 dark:text-slate-500 line-through ' : 'text-slate-700 dark:text-slate-200 '} 'cursor-pointer text-md'`
 
     return (
         <li className="py-4 px-6 bg-slate-100 dark:bg-bgDarkSecondary flex items-center justify-between w-full text-lg first:rounded-t-lg last:rounded-b-none">

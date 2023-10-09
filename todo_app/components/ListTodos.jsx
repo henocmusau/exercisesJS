@@ -23,7 +23,7 @@ export default function ListTodos({ todos, changeStateTodo, handleRemoveTodo, ch
             <section
                 className="w-full md:w-[500px] px-2 md:mx-0 inset-x-0 absolute mt-5 shadow-lg"
             >
-                <ul className="divide-y dark:divide-gray-700 ">
+                <ul className="divide-y dark:divide-gray-700 max-h-80 md:max-h-[380px] overflow-y-auto">
                     {todos && todos.length > 0 && todos.map(todo => (
                         <Todo
                             key={todo.id}
